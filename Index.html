@@ -9,7 +9,7 @@
 
 <body>
   <header class="top-bar">
-    <div class="selectors">
+    <div class="controls">
       <select id="difficulty">
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
@@ -20,10 +20,9 @@
         <option value="timed">Timed (60s)</option>
         <option value="passage">Passage</option>
       </select>
-    </div>
 
-    <button id="startBtn">Start Test</button>
-    <button id="restartBtn">Restart</button>
+      <button id="startBtn">Start</button>
+    </div>
   </header>
 
   <section class="stats">
@@ -35,15 +34,6 @@
   <main>
     <div id="passage" class="passage"></div>
   </main>
-
-  <section id="results" class="results hidden">
-    <h2>Results</h2>
-    <p>WPM: <span id="finalWpm"></span></p>
-    <p>Accuracy: <span id="finalAccuracy"></span></p>
-    <p>Correct Characters: <span id="finalCorrect"></span></p>
-    <p>Incorrect Characters: <span id="finalIncorrect"></span></p>
-    <p id="bestMessage"></p>
-  </section>
 
   <script src="script.js"></script>
 </body>
