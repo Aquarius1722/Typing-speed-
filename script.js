@@ -1,62 +1,79 @@
-// Passages stored directly in JavaScript
-const passages = {
-  easy: [
-    "Typing tests help improve speed.",
-    "Practice typing daily."
-  ],
-  medium: [
-    "Developers benefit from faster typing skills.",
-    "Accuracy matters as much as speed."
-  ],
-  hard: [
-    "The archaeological expedition unearthed artifacts that complicated prevailing theories.",
-    "Globalization isn't as modern as we assume."
-  ]
-};
+// Embedded passage data
+const passages = [
+  { difficulty: "easy", text: "The quick brown fox jumps over the lazy dog." },
+  { difficulty: "medium", text: "Typing tests measure speed and accuracy in real time." },
+  { difficulty: "hard", text: "The archaeological expedition unearthed artifacts that complicated prevailing theories about Bronze Age trade networks." }
+];
 
 let currentPassage = "";
-let index = 0;
+let timer, timeElapsed = 0;
+let bestWPM = localStorage.getItem("bestWPM") || 0;
 
-// Start button
-document.getElementById("startBtn").addEventListener("click", startTest);
+document.getElementById("best").textContent = `Best: ${bestWPM}`;
+
+function getRandomPassage(difficulty) {
+  const filtered = passages.filter(p => p.difficulty === difficulty);
+  return filtered[Math.floor(Math.random() * filtered.length)].text;
+}
 
 function startTest() {
-  resetTest();
-  loadPassage();
-  enableTyping();
+  currentPassage = getRandomPassage(document.getElementById("difficulty").value);
+  document.getElementById("passage").innerHTML = currentPassage.split("").map(c => `<span>${c}</span>`).join("");
+  document.getElementById("input").value = "";
+  timeElapsed = 0;
+  clearInterval(timer);
+  document.getElementById("time").textContent = "Time: 0s";
+  if (document.getElementById("mode").value === "timed") {
+    timer = setInterval(() => updateTime(), 1000);
+  }
 }
 
-function resetTest() {
-  index = 0;
-  document.getElementById("wpm").textContent = 0;
-  document.getElementById("accuracy").textContent = "100%";
-  document.getElementById("time").textContent = "0:00";
+function updateTime() {
+  timeElapsed++;
+  document.getElementById("time").textContent = `Time: ${timeElapsed}s`;
+  if (timeElapsed >= 60 && document.getElementById("mode").value === "timed") {
+    endTest();
+  }
 }
 
-function loadPassage() {
-  const difficulty = document.getElementById("difficulty").value;
-  const list = passages[difficulty];
-  currentPassage = list[Math.floor(Math.random() * list.length)];
-
-  const passageEl = document.getElementById("passage");
-  passageEl.innerHTML = "";
-
-  currentPassage.split("").forEach(char => {
-    const span = document.createElement("span");
-    span.textContent = char;
-    passageEl.appendChild(span);
+function updateStats() {
+  const input = document.getElementById("input").value;
+  const spans = document.querySelectorAll("#passage span");
+  let correct = 0;
+  input.split("").forEach((char, i) => {
+    if (char === currentPassage[i]) {
+      spans[i].className = "correct";
+      correct++;
+    } else {
+      spans[i].className = "incorrect";
+    }
   });
+  const accuracy = Math.round((correct / input.length) * 100) || 100;
+  const wpm = Math.round((input.length / 5) / (timeElapsed / 60 || 1));
+  document.getElementById("accuracy").textContent = `Accuracy: ${accuracy}%`;
+  document.getElementById("wpm").textContent = `WPM: ${wpm}`;
+  if (document.getElementById("mode").value === "passage" && input.length === currentPassage.length) {
+    endTest();
+  }
 }
 
-function enableTyping() {
-  const passageEl = document.getElementById("passage");
-  passageEl.setAttribute("contenteditable", "true");
-  passageEl.focus();
-
-  passageEl.addEventListener("keydown", handleTyping);
+function endTest() {
+  clearInterval(timer);
+  const wpm = parseInt(document.getElementById("wpm").textContent.split(": ")[1]);
+  if (bestWPM == 0) {
+    alert("Baseline Established!");
+    bestWPM = wpm;
+    localStorage.setItem("bestWPM", bestWPM);
+  } else if (wpm > bestWPM) {
+    bestWPM = wpm;
+    localStorage.setItem("bestWPM", bestWPM);
+    alert("High Score Smashed! 🎉");
+  }
+  document.getElementById("best").textContent = `Best: ${bestWPM}`;
+  document.getElementById("result").classList.remove("hidden");
+  document.getElementById("result").textContent = `Final WPM: ${wpm}, Accuracy: ${document.getElementById("accuracy").textContent}`;
 }
 
-function handleTyping(e) {
-  // Placeholder: You will implement typing logic here
-  console.log("Key pressed:", e.key);
-}
+document.getElementById("start").addEventListener("click", startTest);
+document.getElementById("restart").addEventListener("click", startTest);
+document.getElementById("input").addEventListener("input", updateStats);
