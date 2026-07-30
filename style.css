@@ -1,75 +1,225 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #1e1e1e;
-  color: #fff;
   margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #050816;
+  color: #e5e7eb;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .app {
-  max-width: 800px;
   width: 100%;
-  padding: 20px;
+  max-width: 900px;
+  padding: 16px;
 }
+
+/* Stats bar */
 
 .stats {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.stat-group {
+  flex: 1;
+  min-width: 120px;
+  background: #0f172a;
+  padding: 10px 12px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Colors similar to design */
+
+.stat-wpm {
+  color: #22c55e;   /* green */
+}
+
+.stat-accuracy {
+  color: #38bdf8;   /* cyan */
+}
+
+.stat-time {
+  color: #f97316;   /* orange */
+}
+
+.stat-best {
+  color: #a855f7;   /* purple */
+}
+
+/* Options row */
+
+.options {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.option-group {
+  flex: 1;
+  min-width: 150px;
+  background: #0f172a;
+  padding: 10px 12px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.option-label {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+select {
+  background: #020617;
+  color: #e5e7eb;
+  border-radius: 6px;
+  border: 1px solid #1f2937;
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
+select:focus {
+  outline: 2px solid #38bdf8;
+}
+
+/* Main area */
+
+.main {
+  background: #020617;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .passage {
-  background: #2a2a2a;
-  padding: 15px;
-  border-radius: 5px;
-  min-height: 100px;
-  margin-bottom: 10px;
+  background: #020617;
+  border-radius: 10px;
+  padding: 12px;
+  min-height: 120px;
+  line-height: 1.6;
+  font-size: 15px;
+  color: #9ca3af;
+  cursor: text;
 }
 
-textarea {
-  width: 100%;
-  height: 100px;
-  background: #111;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  font-size: 16px;
+/* Character feedback */
+
+.passage span.correct {
+  color: #22c55e;
 }
 
-.controls {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-button, select {
-  background: #333;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-button:hover, select:focus {
-  background: #555;
-}
-
-.correct {
-  color: #4caf50;
-}
-
-.incorrect {
-  color: #f44336;
+.passage span.incorrect {
+  color: #ef4444;
   text-decoration: underline;
 }
 
-.result {
-  margin-top: 20px;
-  text-align: center;
+.passage span.cursor {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 2px;
 }
+
+/* Input */
+
+.input {
+  width: 100%;
+  min-height: 80px;
+  border-radius: 10px;
+  border: 1px solid #1f2937;
+  background: #020617;
+  color: #e5e7eb;
+  padding: 10px;
+  font-size: 15px;
+  resize: vertical;
+}
+
+.input:focus {
+  outline: 2px solid #38bdf8;
+}
+
+/* Buttons */
+
+.controls {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  flex: 1;
+  min-width: 140px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  background: #1f2937;
+  color: #e5e7eb;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn.primary {
+  background: #22c55e;
+  color: #022c22;
+}
+
+.btn:hover {
+  background: #374151;
+  transform: translateY(-1px);
+}
+
+.btn.primary:hover {
+  background: #16a34a;
+}
+
+.btn:focus {
+  outline: 2px solid #38bdf8;
+}
+
+/* Result */
+
+.result {
+  margin-top: 14px;
+  background: #0f172a;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
 .hidden {
   display: none;
 }
+
+/* Responsive */
+
+@media (min-width: 768px) {
+  .main {
+    min-height: 260px;
+  }
+  }
