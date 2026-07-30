@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Typing Speed Test</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <header class="top-bar">
-    <div class="controls">
+  <div class="app">
+    <header class="stats">
+      <div id="wpm">WPM: 0</div>
+      <div id="accuracy">Accuracy: 100%</div>
+      <div id="time">Time: 0s</div>
+      <div id="best">Best: 0</div>
+    </header>
+
+    <main>
+      <div id="passage" class="passage"></div>
+      <textarea id="input" placeholder="Start typing here..."></textarea>
+    </main>
+
+    <footer class="controls">
+      <button id="start">Start Test</button>
+      <button id="restart">Restart</button>
       <select id="difficulty">
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
       </select>
-
       <select id="mode">
         <option value="timed">Timed (60s)</option>
         <option value="passage">Passage</option>
       </select>
+    </footer>
 
-      <button id="startBtn">Start</button>
-    </div>
-  </header>
-
-  <section class="stats">
-    <div>WPM: <span id="wpm">0</span></div>
-    <div>Accuracy: <span id="accuracy">100%</span></div>
-    <div>Time: <span id="time">0:00</span></div>
-  </section>
-
-  <main>
-    <div id="passage" class="passage"></div>
-  </main>
-
+    <div id="result" class="result hidden"></div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
