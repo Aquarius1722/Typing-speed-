@@ -8,33 +8,59 @@
 <body>
   <div class="app">
     <header class="stats">
-      <div id="wpm">WPM: 0</div>
-      <div id="accuracy">Accuracy: 100%</div>
-      <div id="time">Time: 0s</div>
-      <div id="best">Best: 0</div>
+      <div class="stat-group">
+        <span class="stat-label">WPM</span>
+        <span id="wpm" class="stat-value stat-wpm">0</span>
+      </div>
+      <div class="stat-group">
+        <span class="stat-label">Accuracy</span>
+        <span id="accuracy" class="stat-value stat-accuracy">100%</span>
+      </div>
+      <div class="stat-group">
+        <span class="stat-label">Time</span>
+        <span id="time" class="stat-value stat-time">0:00</span>
+      </div>
+      <div class="stat-group">
+        <span class="stat-label">Best WPM</span>
+        <span id="best" class="stat-value stat-best">0</span>
+      </div>
     </header>
 
-    <main>
+    <section class="options">
+      <div class="option-group">
+        <span class="option-label">Difficulty</span>
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard" selected>Hard</option>
+        </select>
+      </div>
+      <div class="option-group">
+        <span class="option-label">Mode</span>
+        <select id="mode">
+          <option value="timed" selected>Timed (60s)</option>
+          <option value="passage">Passage</option>
+        </select>
+      </div>
+    </section>
+
+    <main class="main">
       <div id="passage" class="passage"></div>
-      <textarea id="input" placeholder="Start typing here..."></textarea>
+      <textarea
+        id="input"
+        class="input"
+        placeholder="Click here or the passage to start typing..."
+      ></textarea>
     </main>
 
     <footer class="controls">
-      <button id="start">Start Test</button>
-      <button id="restart">Restart</button>
-      <select id="difficulty">
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select>
-      <select id="mode">
-        <option value="timed">Timed (60s)</option>
-        <option value="passage">Passage</option>
-      </select>
+      <button id="start" class="btn primary">Start Test</button>
+      <button id="restart" class="btn">Restart Test</button>
     </footer>
 
     <div id="result" class="result hidden"></div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
