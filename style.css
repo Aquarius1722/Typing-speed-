@@ -22,24 +22,24 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .stat-group {
   background: #0f172a;
-  padding: 14px;
+  padding: 16px;
   border-radius: 14px;
 }
 
 .stat-label {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   color: #9ca3af;
 }
 
 .stat-value {
-  font-size: 26px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 800;
 }
 
 .stat-wpm { color: #22c55e; }
@@ -52,7 +52,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .option-group {
@@ -67,8 +67,8 @@ select {
   border: 1px solid #1f2937;
   padding: 12px;
   font-size: 18px;
-  border-radius: 10px;
   font-weight: 700;
+  border-radius: 10px;
 }
 
 /* ---------- MAIN ---------- */
@@ -177,90 +177,62 @@ select {
   }
 }
 
-/* ---------- PIXEL PERFECT MOBILE ---------- */
+/* ---------- MOBILE BIG & BOLD ---------- */
 @media (max-width: 480px) {
 
   body {
-    padding: 10px;
+    padding: 12px;
   }
 
   .app {
     padding: 0;
   }
 
-  /* BIG & BOLD STATS */
-  .stats {
-    gap: 12px;
-  }
-
-  .stat-group {
-    padding: 14px;
-    border-radius: 14px;
-  }
-
+  /* Stats BIG */
   .stat-label {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
   }
 
   .stat-value {
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 800;
   }
 
-  /* BIG OPTIONS */
-  .options {
-    gap: 12px;
-  }
-
-  .option-group {
-    padding: 14px;
-    border-radius: 14px;
-  }
-
+  /* Options BIG */
   select {
-    padding: 12px;
     font-size: 18px;
     font-weight: 700;
+    padding: 12px;
   }
 
-  /* MAIN AREA BIG LIKE IMAGE */
-  .main {
-    padding: 18px;
-    border-radius: 18px;
-    gap: 16px;
-  }
-
+  /* Passage BIG */
   .passage {
-    padding: 16px;
-    min-height: 160px;
     font-size: 20px;
     font-weight: 600;
     line-height: 1.8;
+    padding: 16px;
   }
 
+  /* Input BIG */
   .input {
-    min-height: 120px;
     font-size: 20px;
     font-weight: 700;
+    min-height: 120px;
     padding: 14px;
   }
 
-  /* BIG BUTTONS */
-  .controls {
-    gap: 14px;
-  }
-
+  /* Buttons BIG */
   .btn {
-    padding: 16px;
     font-size: 20px;
     font-weight: 800;
+    padding: 16px;
   }
 
-  /* BIG RESULT */
+  /* Result BIG */
   .result {
-    padding: 16px;
     font-size: 20px;
     font-weight: 700;
+    padding: 16px;
   }
 }
