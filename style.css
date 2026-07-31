@@ -1,46 +1,28 @@
 /* ---------- BASE ---------- */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
   background: #050816;
   color: #e5e7eb;
-  padding: 12px;
+  padding: 10px;
 }
 
-.app {
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-}
+.app { width: 100%; max-width: 900px; margin: auto; }
 
 /* ---------- STATS ---------- */
 .stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
 }
-
-.stat-group {
-  background: #0f172a;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.stat-label {
-  font-size: 12px;
-  color: #9ca3af;
-}
-
-.stat-value {
-  font-size: 20px;
-  font-weight: 600;
-}
-
+.stat-group { background: #0f172a; padding: 8px; border-radius: 8px; min-width: 0; }
+.stat-label { font-size: 11px; color: #9ca3af; }
+.stat-value { font-size: 18px; font-weight: 600; }
 .stat-wpm { color: #22c55e; }
 .stat-accuracy { color: #38bdf8; }
 .stat-time { color: #f97316; }
@@ -49,79 +31,67 @@ body {
 /* ---------- OPTIONS ---------- */
 .options {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
 }
-
-.option-group {
-  background: #0f172a;
-  padding: 10px;
-  border-radius: 10px;
-}
+.option-group { background: #0f172a; padding: 8px; border-radius: 8px; min-width: 0; }
 
 select {
+  width: 100%;
   background: #020617;
   color: #e5e7eb;
   border: 1px solid #1f2937;
-  padding: 6px;
+  padding: 8px;
   border-radius: 6px;
+  font-size: 16px; /* prevents mobile zoom */
 }
 
 /* ---------- MAIN ---------- */
 .main {
   background: #020617;
-  padding: 14px;
-  border-radius: 14px;
+  padding: 10px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .passage {
   background: #020617;
-  padding: 12px;
+  padding: 10px;
   border-radius: 10px;
-  min-height: 120px;
-  line-height: 1.6;
+  min-height: 110px;
+  line-height: 1.5;
   font-size: 15px;
   color: #9ca3af;
   cursor: text;
+  overflow-wrap: break-word;
 }
-
-.passage span.correct {
-  color: #22c55e;
-}
-
-.passage span.incorrect {
-  color: #ef4444;
-  text-decoration: underline;
-}
-
-.passage span.cursor {
-  background: rgba(148, 163, 184, 0.3);
-  border-radius: 2px;
-}
+.passage span.correct { color: #22c55e; }
+.passage span.incorrect { color: #ef4444; text-decoration: underline; }
+.passage span.cursor { background: rgba(148, 163, 184, 0.3); border-radius: 2px; }
 
 .input {
   width: 100%;
-  min-height: 80px;
+  min-height: 70px;
   background: #020617;
   border: 1px solid #1f2937;
   border-radius: 10px;
   color: #e5e7eb;
   padding: 10px;
-  font-size: 15px;
+  font-size: 16px; /* prevents mobile zoom */
+  line-height: 1.4;
+  resize: vertical;
 }
 
 /* ---------- BUTTONS ---------- */
 .controls {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
 }
-
 .btn {
   padding: 10px;
   border-radius: 999px;
@@ -130,122 +100,33 @@ select {
   color: #e5e7eb;
   font-size: 14px;
   cursor: pointer;
+  min-height: 40px;
 }
-
-.btn.primary {
-  background: #22c55e;
-  color: #022c22;
-}
+.btn.primary { background: #22c55e; color: #022c22; }
 
 /* ---------- RESULT ---------- */
-.result {
-  margin-top: 14px;
-  background: #0f172a;
-  padding: 10px;
-  border-radius: 10px;
-}
+.result { margin-top: 10px; background: #0f172a; padding: 10px; border-radius: 10px; font-size: 13px; }
 
-.hidden {
-  display: none;
+.hidden { display: none; }
+
+/* ---------- COMPACT PHONES ---------- */
+@media (max-width: 480px) {
+  body { padding: 6px; }
+  .stats, .options, .controls { gap: 6px; }
+  .stat-group, .option-group { padding: 6px; }
+  .stat-label { font-size: 10px; }
+  .stat-value { font-size: 15px; }
+  .main { padding: 8px; gap: 8px; }
+  .passage { font-size: 14px; min-height: 90px; padding: 8px; }
+  .input { min-height: 60px; font-size: 16px; }
+  .btn { font-size: 13px; padding: 9px; }
 }
 
 /* ---------- DESKTOP ---------- */
 @media (min-width: 768px) {
-  .stats {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .options {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .controls {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .main {
-    min-height: 260px;
-  }
-}
-
-/* ---------- ULTRA COMPACT MOBILE ---------- */
-@media (max-width: 480px) {
-
-  body {
-    padding: 2px;
-  }
-
-  .app {
-    padding: 0;
-  }
-
-  /* Stats SUPER small */
-  .stats {
-    gap: 3px;
-  }
-
-  .stat-group {
-    padding: 4px;
-    border-radius: 5px;
-  }
-
-  .stat-label {
-    font-size: 8px;
-  }
-
-  .stat-value {
-    font-size: 12px;
-  }
-
-  /* Options SUPER small */
-  .options {
-    gap: 3px;
-  }
-
-  .option-group {
-    padding: 5px;
-    border-radius: 5px;
-  }
-
-  select {
-    padding: 3px;
-    font-size: 11px;
-  }
-
-  /* Main area SUPER small */
-  .main {
-    padding: 6px;
-    border-radius: 8px;
-    gap: 5px;
-  }
-
-  .passage {
-    padding: 6px;
-    min-height: 60px;
-    font-size: 11px;
-    line-height: 1.25;
-  }
-
-  .input {
-    min-height: 45px;
-    font-size: 12px;
-    padding: 5px;
-  }
-
-  /* Buttons SUPER small */
-  .controls {
-    gap: 5px;
-  }
-
-  .btn {
-    padding: 6px;
-    font-size: 11px;
-    border-radius: 999px;
-  }
-
-  /* Result SUPER small */
-  .result {
-    padding: 6px;
-    font-size: 11px;
-  }
+  body { padding: 16px; }
+  .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .main { min-height: 260px; padding: 14px; }
+  .passage { font-size: 17px; min-height: 140px; }
+  .input { min-height: 90px; }
 }
